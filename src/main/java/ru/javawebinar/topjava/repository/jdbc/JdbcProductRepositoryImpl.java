@@ -122,17 +122,17 @@ public class JdbcProductRepositoryImpl implements ProductRepository {
     @Override
     public List<Product> getAll(int userId) {
 
-        List<Product> x = new ArrayList<Product>();
-        Product y = new Product();
-        y.setArticul("3");
-        y.setCena(30);
-        y.setKolvo(30);
+        //List<Product> x = new ArrayList<Product>();
+       // Product y = new Product();
+       // y.setArticul("3");
+       // y.setCena(30);
+       // y.setKolvo(30);
 
-        x.add(y);
+       // x.add(y);
 
 
-        //List<Product> x = jdbcTemplate.query(
-        //        "SELECT * FROM products WHERE user_id=? ORDER BY date_time DESC", ROW_MAPPER, userId);
+        List<Product> x = jdbcTemplate.query(
+                "SELECT * FROM products WHERE user_id=? ORDER BY date_time DESC", ROW_MAPPER, userId);
 
         //отсортировано правильным компаратором
 
