@@ -1,0 +1,53 @@
+ <!-- Далее пока мёртвая зона -->
+        <c:forEach items="${mealsPaging}" var="entry">
+            Key = ${entry.key} <%--, value = ${entry.value}<br>
+            Следующую строчку полюбому можно умней
+            --%>
+            <c:if test="${entry.key == 0}">
+                <c:forEach items="${entry.value}" var="product">
+
+                  <!---->
+
+
+
+               <%-- ${item} ${!loop.last ? ', ' : ''} --%>
+
+
+
+                <tr>
+
+
+                    <c:if test ="${empty product.picture}">
+                        <td><a href="Sklad-Photos/NO-IMAGE.png">Photo</a></td>
+                    </c:if>
+
+                    <c:if test ="${not empty product.picture}">
+                        <td><a href="PhotoCablesMendeleev/${product.picture}.jpg">Photo</a></td>
+                    </c:if>
+
+
+                    <td><%=x%></td>
+                    <% x++; %>
+
+                    <td>${product.articul}</td>
+
+                    <td>${product.type1}</td>
+                    <td>${product.type2}</td>
+                    <td>${product.cod}</td>
+                    <td>${product.naimenovanie}</td>
+                    <td>${product.proizvoditel}</td>
+                    <td>${product.edizmereniya}</td>
+                    <td>${product.kolvo}</td>
+                    <td>${product.cena}</td>
+
+                    <td>${product.fullprice}</td>
+                    <td>${product.primechanie}</td>
+
+                    <td><a href="products?action=update&id=${product.id}">Update</a></td>
+                    <td><a href="products?action=delete&id=${product.id}">Delete</a></td>
+
+                </tr>
+
+                </c:forEach><br>
+            </c:if>
+        </c:forEach>
