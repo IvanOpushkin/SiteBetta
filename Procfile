@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -Dspring.profiles.active="datajdbc,heroku" target/classes:target/dependency/* HelloWorld
+web: sh target/bin/webapp
