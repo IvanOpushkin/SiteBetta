@@ -95,15 +95,7 @@ public class InMemoryProductRepositoryImpl implements ProductRepository
                         .sorted(Comparator.comparing(Product::getDateTime).reversed());
     }
 
-    @Override
-    public List<Product> sortType(int userId) {
-        return null;
-    }
 
-    @Override
-    public List<Product> sortType2(int userId) {
-        return null;
-    }
 
     @Override
     public List<Product> sortTypePriceAll(int userId) {
