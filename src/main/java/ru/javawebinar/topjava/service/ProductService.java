@@ -26,10 +26,6 @@ public interface ProductService {
 
     Product create(Product product, int userId);
 
-    List<Product> sortType(int userId);
-
-    List<Product> sortType2(int userId);
-
     List<Product> sortTypePriceAll(int userId);
 
     Map<Integer,List<Product>> paging(int userId);

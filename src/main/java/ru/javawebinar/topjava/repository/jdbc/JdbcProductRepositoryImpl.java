@@ -130,7 +130,6 @@ public class JdbcProductRepositoryImpl implements ProductRepository {
 
        // x.add(y);
 
-
         List<Product> x = jdbcTemplate.query(
                 "SELECT * FROM products WHERE user_id=? ORDER BY date_time DESC", ROW_MAPPER, userId);
 
@@ -141,6 +140,7 @@ public class JdbcProductRepositoryImpl implements ProductRepository {
                 .collect(Collectors.toList());
 
 
+
         return x;
     }
 
@@ -149,7 +149,7 @@ public class JdbcProductRepositoryImpl implements ProductRepository {
 
         List<Product> x = getAll(userId);
         //СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ
-       if("sortTypeSetevoe".equals(action))
+       if("sortTypeSetevoe".equals(action) )
         {
             String type1 = "Сетевое оборудование";
             //отсортировано правильным компаратором
@@ -311,6 +311,105 @@ public class JdbcProductRepositoryImpl implements ProductRepository {
             return pagingFORM(x);
         }
 
+       //Коммуникационные шкафы//Коммуникационные шкафы//Коммуникационные шкафы//Коммуникационные шкафы//Коммуникационные шкафы
+      //Добавил кусочек в метод и ничего добавлять не надо
+       else if("sortTypeComm".equals(action))
+       {
+           String type1 = "Коммуникационные шкафы";
+           x = x.stream().filter(Meal -> Meal.getType1().contains(type1))
+                   .sorted((o1, o2)->o1.getCod().
+                           compareTo(o2.getCod()))
+                   .collect(Collectors.toList());
+           return pagingFORM(x);
+
+       }
+
+       else if("sortTypeComm".equals(action))
+       {
+           String type1 = "Коммуникационные шкафы";
+           x = x.stream().filter(Meal -> Meal.getType1().equals(type1))
+                   .sorted((o1, o2)->o2.getCena().
+                           compareTo(o1.getCena()))
+                   .collect(Collectors.toList());
+           return pagingFORM(x);
+
+       }
+       else if("sortTypeComm".equals(action))
+       {
+           String type1 = "Коммуникационные шкафы";
+           x = x.stream().filter(Meal -> Meal.getType1().contains(type1) && !Meal.getProizvoditel().equals(""))
+                   .sorted((o1, o2)->o1.getCod().
+                           compareTo(o2.getCod()))
+                   .collect(Collectors.toList());
+           return pagingFORM(x);
+       }
+
+        //Компьютерное оборудование//Компьютерное оборудование//Компьютерное оборудование//Компьютерное оборудование
+       //Добавил кусочек в метод и ничего добавлять не надо
+       else if("sortTypeKompOborud".equals(action))
+       {
+           String type1 = "Компьютерное оборудование";
+           x = x.stream().filter(Meal -> Meal.getType1().contains(type1))
+                   .sorted((o1, o2)->o1.getCod().
+                           compareTo(o2.getCod()))
+                   .collect(Collectors.toList());
+           return pagingFORM(x);
+
+       }
+
+       else if("sortTypeKompOborudCena".equals(action))
+       {
+           String type1 = "Компьютерное оборудование";
+           x = x.stream().filter(Meal -> Meal.getType1().equals(type1))
+                   .sorted((o1, o2)->o2.getCena().
+                           compareTo(o1.getCena()))
+                   .collect(Collectors.toList());
+           return pagingFORM(x);
+
+       }
+       else if("sortTypeKompOborudProizvod".equals(action))
+       {
+           String type1 = "Компьютерное оборудование";
+           x = x.stream().filter(Meal -> Meal.getType1().contains(type1) && !Meal.getProizvoditel().equals(""))
+                   .sorted((o1, o2)->o1.getCod().
+                           compareTo(o2.getCod()))
+                   .collect(Collectors.toList());
+           return pagingFORM(x);
+       }
+
+        //Телекомуникационные//Телекомуникационные//Телекомуникационные//Телекомуникационные//Телекомуникационные
+       //Добавил кусочек в метод и ничего добавлять не надо
+       else if("sortTypeTeleComm".equals(action))
+       {
+           String type1 = "Телекомуникационные";
+           x = x.stream().filter(Meal -> Meal.getType1().contains(type1))
+                   .sorted((o1, o2)->o1.getCod().
+                           compareTo(o2.getCod()))
+                   .collect(Collectors.toList());
+           return pagingFORM(x);
+
+       }
+
+       else if("sortTypeTeleCommCena".equals(action))
+       {
+           String type1 = "Телекомуникационные";
+           x = x.stream().filter(Meal -> Meal.getType1().equals(type1))
+                   .sorted((o1, o2)->o2.getCena().
+                           compareTo(o1.getCena()))
+                   .collect(Collectors.toList());
+           return pagingFORM(x);
+
+       }
+       else if("sortTypeTeleCommProizvod".equals(action))
+       {
+           String type1 = "Телекомуникационные";
+           x = x.stream().filter(Meal -> Meal.getType1().contains(type1) && !Meal.getProizvoditel().equals(""))
+                   .sorted((o1, o2)->o1.getCod().
+                           compareTo(o2.getCod()))
+                   .collect(Collectors.toList());
+           return pagingFORM(x);
+       }
+
         return pagingFORM(x);
     }
 
@@ -321,45 +420,6 @@ public class JdbcProductRepositoryImpl implements ProductRepository {
                 ROW_MAPPER, userId, startDate, endDate);
     }
 
-    //sortType action=sortType
-
-
-
-    //Сортировка по типу1
-    @Override
-    public List<Product> sortType(int userId) {
-
-        List<Product> x = getAll(userId);
-                //jdbcTemplate.query(
-               // "SELECT * FROM meals WHERE user_id=? ORDER BY date_time DESC", ROW_MAPPER, userId);
-
-        //отсортировано правильным компаратором
-
-        x = x.stream().filter(Meal -> Meal.getType2().equals("Тип1"))
-                .sorted((o1, o2)->o1.getCod().
-                        compareTo(o2.getCod()))
-                .collect(Collectors.toList());
-
-
-        return x;
-    }
-
-    @Override
-    public List<Product> sortType2(int userId) {
-
-        List<Product> x = jdbcTemplate.query(
-                "SELECT * FROM products WHERE user_id=? ORDER BY date_time DESC", ROW_MAPPER, userId);
-
-        //отсортировано правильным компаратором
-
-        x = x.stream().filter(Meal -> Meal.getType2().equals("Тип2"))
-                .sorted((o1, o2)->o1.getCod().
-                        compareTo(o2.getCod()))
-                .collect(Collectors.toList());
-
-
-        return x;
-    }
 
     @Override
     public List<Product> sortTypePriceAll(int userId) {
@@ -374,13 +434,9 @@ public class JdbcProductRepositoryImpl implements ProductRepository {
 
         return x;
     }
-
-
     //Search Engine izi by contains String all check values new x i vse
     @Override
     public Map<Integer,List<Product>> search(int userId, String searchWord) {
-
-        // List<Product> x = sortType2(userId);
 
         searchString2 = searchWord;
 
@@ -408,24 +464,12 @@ public class JdbcProductRepositoryImpl implements ProductRepository {
         return pagingFORM(searched);
     }
 
-
-
     //Paging base
     @Override
     public Map<Integer,List<Product>> paging(int userId) {
 
-        //pNumber
-        //Метод который будет вставлятся во все методы после сортировки. Нужна правильная очерёдность не обратная.
-        //Базовая сортировка включена в метод getAll.
-
-       // List<Product> x = sortType2(userId);
 
         List<Product> x = getAll(userId);
-
-        //МОМЕНТ НУЖНОЙ СОРТИРОВКИ.
-
-
-        //КОРОЧЕ В СТО РАЗ. МЕТОД ПЭЙДЖИНГА ОТДЕЛЬНЫМ МЕТОДОМ НЕ ДЛЯ СЕРВИСОМ. ПОБОЧНЫЙ МЕТОД.? КОРОЧЕ В СТО РАЗ.
 
         if (x.isEmpty())
             return null;
@@ -523,6 +567,20 @@ public class JdbcProductRepositoryImpl implements ProductRepository {
         //pageNumber from 1
         int mapInt = 1;
 
+       int fullPartPrice = 0;
+
+       //Аккуратно до пэйджинга установили всю цену продуктов, определённого типа.
+
+       //Формирование полной цены
+       for (Product good:x)
+        {
+            fullPartPrice+=(good.getKolvo()*good.getCena());
+        }
+        //Установка полной цены каждому типовому уже кусочку
+        for (Product good:x)
+        {
+            good.setFullPriceOfType(fullPartPrice);
+        }
 
 
         while (pNumberHelper < xSize)
@@ -558,7 +616,108 @@ public class JdbcProductRepositoryImpl implements ProductRepository {
 
     }
 
-    /*
+
+    @Override public Map<Integer, List<Product>> sortTypeSetevoe(int userId) {
+        return null;
+    }
+
+    @Override
+    public Map<Integer, List<Product>> sortTypeSetevoeCena(int userId) {
+        return null;
+    }
+
+    @Override
+    public Map<Integer, List<Product>> sortTypeSetevoeProizvod(int userId) {
+        return null;
+    }
+
+    @Override
+    public Map<Integer, List<Product>> sortTypeLotki(int userId) {
+        return null;
+    }
+
+    @Override
+    public Map<Integer, List<Product>> sortTypeLotkiCena(int userId) {
+        return null;
+    }
+
+    @Override
+    public Map<Integer, List<Product>> sortTypeLotkiProizvod(int userId) {
+        return null;
+    }
+
+    @Override
+    public Map<Integer, List<Product>> sortTypeElektroshit(int userId) {
+        return null;
+    }
+
+    @Override
+    public Map<Integer, List<Product>> sortTypeElektroshitCena(int userId) {
+        return null;
+    }
+
+    @Override
+    public Map<Integer, List<Product>> sortTypeElektroshitProizvod(int userId) {
+        return null;
+    }
+
+    @Override
+    public Map<Integer, List<Product>> sortTypeSvetovoe(int userId) {
+        return null;
+    }
+
+    @Override
+    public Map<Integer, List<Product>> sortTypeSvetovoeCena(int userId) {
+        return null;
+    }
+
+    @Override
+    public Map<Integer, List<Product>> sortTypeSvetovoeProizvod(int userId) {
+        return null;
+    }
+
+    @Override
+    public Map<Integer, List<Product>> sortTypeSantex(int userId) {
+        return null;
+    }
+
+    @Override
+    public Map<Integer, List<Product>> sortTypeSantexCena(int userId) {
+        return null;
+    }
+
+    @Override
+    public Map<Integer, List<Product>> sortTypeSantexProizvod(int userId) {
+        return null;
+    }
+
+    public static int getpPagesN() {
+        return pPagesN;
+    }
+
+    public static void setpPagesN(int pPagesN) {
+        JdbcProductRepositoryImpl.pPagesN = pPagesN;
+    }
+
+    public static int getPageCurr() {
+        return pageCurr;
+    }
+
+    public static void setPageCurr(int pageCurr) {
+        JdbcProductRepositoryImpl.pageCurr = pageCurr;
+    }
+
+    public static String getSearchString2() {
+        return searchString2;
+    }
+
+    public static void setSearchString2(String searchString2) {
+        JdbcProductRepositoryImpl.searchString2 = searchString2;
+    }
+}
+
+
+  /*
     @Override
     public Map<Integer,List<Product>> sortTypeSetevoe(int userId) {
 
@@ -796,106 +955,6 @@ public class JdbcProductRepositoryImpl implements ProductRepository {
     }
 
 */
-
-    @Override
-    public Map<Integer, List<Product>> sortTypeSetevoe(int userId) {
-        return null;
-    }
-
-    @Override
-    public Map<Integer, List<Product>> sortTypeSetevoeCena(int userId) {
-        return null;
-    }
-
-    @Override
-    public Map<Integer, List<Product>> sortTypeSetevoeProizvod(int userId) {
-        return null;
-    }
-
-    @Override
-    public Map<Integer, List<Product>> sortTypeLotki(int userId) {
-        return null;
-    }
-
-    @Override
-    public Map<Integer, List<Product>> sortTypeLotkiCena(int userId) {
-        return null;
-    }
-
-    @Override
-    public Map<Integer, List<Product>> sortTypeLotkiProizvod(int userId) {
-        return null;
-    }
-
-    @Override
-    public Map<Integer, List<Product>> sortTypeElektroshit(int userId) {
-        return null;
-    }
-
-    @Override
-    public Map<Integer, List<Product>> sortTypeElektroshitCena(int userId) {
-        return null;
-    }
-
-    @Override
-    public Map<Integer, List<Product>> sortTypeElektroshitProizvod(int userId) {
-        return null;
-    }
-
-    @Override
-    public Map<Integer, List<Product>> sortTypeSvetovoe(int userId) {
-        return null;
-    }
-
-    @Override
-    public Map<Integer, List<Product>> sortTypeSvetovoeCena(int userId) {
-        return null;
-    }
-
-    @Override
-    public Map<Integer, List<Product>> sortTypeSvetovoeProizvod(int userId) {
-        return null;
-    }
-
-    @Override
-    public Map<Integer, List<Product>> sortTypeSantex(int userId) {
-        return null;
-    }
-
-    @Override
-    public Map<Integer, List<Product>> sortTypeSantexCena(int userId) {
-        return null;
-    }
-
-    @Override
-    public Map<Integer, List<Product>> sortTypeSantexProizvod(int userId) {
-        return null;
-    }
-
-    public static int getpPagesN() {
-        return pPagesN;
-    }
-
-    public static void setpPagesN(int pPagesN) {
-        JdbcProductRepositoryImpl.pPagesN = pPagesN;
-    }
-
-    public static int getPageCurr() {
-        return pageCurr;
-    }
-
-    public static void setPageCurr(int pageCurr) {
-        JdbcProductRepositoryImpl.pageCurr = pageCurr;
-    }
-
-    public static String getSearchString2() {
-        return searchString2;
-    }
-
-    public static void setSearchString2(String searchString2) {
-        JdbcProductRepositoryImpl.searchString2 = searchString2;
-    }
-}
 
 
 //СОРИТРОВКА ТИПА СЕТЕВОЕ. ПОТОМ КОПИ НА ДВА ДРУГИХ ТИПА СМЕНА 1го СЛОВА//

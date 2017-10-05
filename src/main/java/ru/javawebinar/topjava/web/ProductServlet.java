@@ -103,144 +103,20 @@ public class ProductServlet extends HttpServlet {
 
 
         //СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ
-        else if("sortTypeSetevoe".equals(action))
+        else if("sortTypeSetevoe".equals(action) || "sortTypeSetevoeCena".equals(action) || "sortTypeSetevoeProizvod".equals(action)
+                || "sortTypeLotki".equals(action) || "sortTypeLotkiCena".equals(action) || "sortTypeLotkiProizvod".equals(action)
+        || "sortTypeElektroshit".equals(action) || "sortTypeElektroshitCena".equals(action) || "sortTypeElektroshitProizvod".equals(action)
+                || "sortTypeSvetovoe".equals(action) || "sortTypeSvetovoeCena".equals(action) || "sortTypeSvetovoeProizvod".equals(action)
+                || "sortTypeSantex".equals(action) || "sortTypeSantexCena".equals(action) || "sortTypeSantexProizvod".equals(action)
+                || "sortTypeComm".equals(action) || "sortTypeCommCena".equals(action) || "sortTypeCommProizvod".equals(action)
+                || "sortTypeKompOborud".equals(action) || "sortTypeKompOborudCena".equals(action) || "sortTypeKompOborudProizvod".equals(action)
+                || "sortTypeTeleComm".equals(action) || "sortTypeTeleCommCena".equals(action) || "sortTypeTeleCommProizvod".equals(action))
         {
             int pageN = Integer.parseInt(request.getParameter("pageN"));
             request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
             request.setAttribute("maxPages", getpPagesN());
             request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
         }
-
-        else if("sortTypeSetevoeCena".equals(action))
-        {
-            int pageN = Integer.parseInt(request.getParameter("pageN"));
-            request.setAttribute("productsPaging", productController.sortTypeSetevoeCena().get(pageN));
-            request.setAttribute("maxPages", getpPagesN());
-            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-        }
-        else if("sortTypeSetevoeProizvod".equals(action))
-        {
-            int pageN = Integer.parseInt(request.getParameter("pageN"));
-            request.setAttribute("productsPaging", productController.sortTypeSetevoeProizvod().get(pageN));
-            request.setAttribute("maxPages", getpPagesN());
-            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-        }
-
-        //ЛОТКИ //ЛОТКИ //ЛОТКИ //ЛОТКИ //ЛОТКИ //ЛОТКИ //ЛОТКИ //ЛОТКИ //ЛОТКИ //ЛОТКИ //ЛОТКИ //ЛОТКИ
-        else if("sortTypeLotki".equals(action))
-        {
-            int pageN = Integer.parseInt(request.getParameter("pageN"));
-            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
-            request.setAttribute("maxPages", getpPagesN());
-            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-        }
-        else if("sortTypeLotkiCena".equals(action))
-        {
-            int pageN = Integer.parseInt(request.getParameter("pageN"));
-            request.setAttribute("productsPaging", productController.sortTypeLotkiCena().get(pageN));
-            request.setAttribute("maxPages", getpPagesN());
-            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-        }
-        else if("sortTypeLotkiProizvod".equals(action))
-        {
-            int pageN = Integer.parseInt(request.getParameter("pageN"));
-            request.setAttribute("productsPaging", productController.sortTypeLotkiProizvod().get(pageN));
-            request.setAttribute("maxPages", getpPagesN());
-            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-        }
-
-        //ЭЛЕКТРОЩИТЫ//ЭЛЕКТРОЩИТЫ//ЭЛЕКТРОЩИТЫ//ЭЛЕКТРОЩИТЫ//ЭЛЕКТРОЩИТЫ//ЭЛЕКТРОЩИТЫ//ЭЛЕКТРОЩИТЫ
-        else if("sortTypeElektroshit".equals(action))
-        {
-            int pageN = Integer.parseInt(request.getParameter("pageN"));
-            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
-            request.setAttribute("maxPages", getpPagesN());
-            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-        }
-        else if("sortTypeElektroshitCena".equals(action))
-        {
-            int pageN = Integer.parseInt(request.getParameter("pageN"));
-            request.setAttribute("productsPaging", productController.sortTypeElektroshitCena().get(pageN));
-            request.setAttribute("maxPages", getpPagesN());
-            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-        }
-        else if("sortTypeElektroshitProizvod".equals(action))
-        {
-            int pageN = Integer.parseInt(request.getParameter("pageN"));
-            request.setAttribute("productsPaging", productController.sortTypeElektroshitProizvod().get(pageN));
-            request.setAttribute("maxPages", getpPagesN());
-            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-        }
-
-
-        //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ
-        else if("sortTypeSvetovoe".equals(action))
-        {
-            int pageN = Integer.parseInt(request.getParameter("pageN"));
-            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
-            request.setAttribute("maxPages", getpPagesN());
-            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-        }
-
-        else if("sortTypeSvetovoeCena".equals(action))
-        {
-            int pageN = Integer.parseInt(request.getParameter("pageN"));
-            request.setAttribute("productsPaging", productController.sortTypeSvetovoeCena().get(pageN));
-            request.setAttribute("maxPages", getpPagesN());
-            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-        }
-        else if("sortTypeSvetovoeProizvod".equals(action))
-        {
-            int pageN = Integer.parseInt(request.getParameter("pageN"));
-            request.setAttribute("productsPaging", productController.sortTypeSvetovoeProizvod().get(pageN));
-            request.setAttribute("maxPages", getpPagesN());
-            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-        }
-
-        //Сантех//Сантех//Сантех//Сантех//Сантех//Сантех//Сантех//Сантех//Сантех//Сантех//Сантех//Сантех
-        else if("sortTypeSantex".equals(action))
-        {
-            int pageN = Integer.parseInt(request.getParameter("pageN"));
-            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
-            request.setAttribute("maxPages", getpPagesN());
-            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-        }
-
-        else if("sortTypeSantexCena".equals(action))
-        {
-            int pageN = Integer.parseInt(request.getParameter("pageN"));
-            request.setAttribute("productsPaging", productController.sortTypeSantexCena().get(pageN));
-            request.setAttribute("maxPages", getpPagesN());
-            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-        }
-        else if("sortTypeSantexProizvod".equals(action))
-        {
-            int pageN = Integer.parseInt(request.getParameter("pageN"));
-            request.setAttribute("productsPaging", productController.sortTypeSantexProizvod().get(pageN));
-            request.setAttribute("maxPages", getpPagesN());
-            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-        }
-
-
-                /*
-            //Разделение типов пример ещё и по номеру попорядку СДЕЛАНО
-            Map<Integer,List<Product>> pagingType(int userId);
-            //Разделения по алфавиту
-            Map<Integer,List<Product>> pagingAlpha(int userId);
-            //Разделения по производителю обратное так как Пустые строки будут сверху
-            Map<Integer,List<Product>> pagingProizvod(int userId);
-            //Разделения по ед Измерениям обратное ок
-            Map<Integer,List<Product>> pagingEdIzm(int userId);
-            //Колво пока с большого количества
-            Map<Integer,List<Product>> pagingKolvo(int userId);
-            //Цена пока с большей цены т.к есть много пустых
-            Map<Integer,List<Product>> pagingCena(int userId);
-            //Общая цена тоже с пустыми
-            Map<Integer,List<Product>> pagingFullprice(int userId);
-            */
-
-
-
         else if ("pagingType".equals(action))
         {
             int pageN = Integer.parseInt(request.getParameter("pageN"));
@@ -447,6 +323,85 @@ public class ProductServlet extends HttpServlet {
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
 
+            //Коммуникационные шкафы//Коммуникационные шкафы//Коммуникационные шкафы//Коммуникационные шкафы//Коммуникационные шкафы
+            case "sortTypeComm":
+                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
+                //по идее после первой строчки хэшируется всё по производ типам
+                request.setAttribute("maxPages", getpPagesN());
+                request.setAttribute("pageCurr", getPageCurr());
+                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+                break;
+
+            case "sortTypeCommCena":
+                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
+                //по идее после первой строчки хэшируется всё по производ типам
+                request.setAttribute("maxPages", getpPagesN());
+                request.setAttribute("pageCurr", getPageCurr());
+                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+                break;
+
+            case "sortTypeCommProizvod":
+                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
+                //по идее после первой строчки хэшируется всё по производ типам
+                request.setAttribute("maxPages", getpPagesN());
+                request.setAttribute("pageCurr", getPageCurr());
+                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+                break;
+
+            //Компьютерное оборудование//Компьютерное оборудование//Компьютерное оборудование//Компьютерное оборудование
+            //Множественный кэйс через пропуск двоеточия, как с if группировкой
+            case "sortTypeKompOborud":
+                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
+                //по идее после первой строчки хэшируется всё по производ типам
+                request.setAttribute("maxPages", getpPagesN());
+                request.setAttribute("pageCurr", getPageCurr());
+                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+                break;
+
+            case "sortTypeKompOborudCena":
+                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
+                //по идее после первой строчки хэшируется всё по производ типам
+                request.setAttribute("maxPages", getpPagesN());
+                request.setAttribute("pageCurr", getPageCurr());
+                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+                break;
+
+            case "sortTypeKompOborudProizvod":
+                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
+                //по идее после первой строчки хэшируется всё по производ типам
+                request.setAttribute("maxPages", getpPagesN());
+                request.setAttribute("pageCurr", getPageCurr());
+                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+                break;
+
+            //Телекомуникационные//Телекомуникационные//Телекомуникационные//Телекомуникационные//Телекомуникационные
+           //Множественный кэйс через пропуск двоеточия, как с if группировкой
+            case "sortTypeTeleComm":
+                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
+                //по идее после первой строчки хэшируется всё по производ типам
+                request.setAttribute("maxPages", getpPagesN());
+                request.setAttribute("pageCurr", getPageCurr());
+                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+                break;
+
+            case "sortTypeTeleCommCena":
+                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
+                //по идее после первой строчки хэшируется всё по производ типам
+                request.setAttribute("maxPages", getpPagesN());
+                request.setAttribute("pageCurr", getPageCurr());
+                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+                break;
+
+            case "sortTypeTeleCommProizvod":
+                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
+                //по идее после первой строчки хэшируется всё по производ типам
+                request.setAttribute("maxPages", getpPagesN());
+                request.setAttribute("pageCurr", getPageCurr());
+                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+                break;
+
+
+
 
 
 
@@ -534,40 +489,6 @@ public class ProductServlet extends HttpServlet {
                 break;
 
 
-            case "sortType":
-                //По паджинации доставать на странице из мапы массив нужных значений. по другому чутка
-                //${map[key]}; попробовать подключать в jsp bean также, страничка базово 1. Ошибки по + и - 1.
-                //(ЭТО НАВЕРНО НЕ НУЖНО ЗДЕСЬ)int okey = Integer.parseInt(request.getParameter("pageNumber"));
-                request.setAttribute("products", productController.sortType());
-                request.getRequestDispatcher("/sortedPage.jsp").forward(request, response);
-                break;
-            case "sortType2":
-                request.setAttribute("products", productController.sortType2());
-                request.getRequestDispatcher("/sortedPage.jsp").forward(request, response);
-                break;
-            case "sortTypePriceAll":
-                request.setAttribute("products", productController.sortTypePriceAll());
-                request.getRequestDispatcher("/sortedPage.jsp").forward(request, response);
-                break;
-            case "sortType2PriceAll":
-                productList = productController.sortType2();
-                productList = productList.stream().sorted((o1, o2)->o2.getCena().
-                        compareTo(o1.getCena()))
-                        .collect(Collectors.toList());
-                request.setAttribute("products", productList);
-                request.getRequestDispatcher("/sortedPage.jsp").forward(request, response);
-                break;
-
-            case "sortType2PriceAllBack":
-                productList = productController.sortType2();
-                productList = productList.stream().sorted((o1, o2)->o1.getCena().
-                        compareTo(o2.getCena()))
-                        .collect(Collectors.toList());
-                request.setAttribute("products", productList);
-                request.getRequestDispatcher("/sortedPage.jsp").forward(request, response);
-                break;
-
-
             case "delete":
                 int id = getId(request);
                 productController.delete(id);
@@ -595,3 +516,220 @@ public class ProductServlet extends HttpServlet {
     }
 }
 
+
+
+                /*
+            //Разделение типов пример ещё и по номеру попорядку СДЕЛАНО
+            Map<Integer,List<Product>> pagingType(int userId);
+            //Разделения по алфавиту
+            Map<Integer,List<Product>> pagingAlpha(int userId);
+            //Разделения по производителю обратное так как Пустые строки будут сверху
+            Map<Integer,List<Product>> pagingProizvod(int userId);
+            //Разделения по ед Измерениям обратное ок
+            Map<Integer,List<Product>> pagingEdIzm(int userId);
+            //Колво пока с большого количества
+            Map<Integer,List<Product>> pagingKolvo(int userId);
+            //Цена пока с большей цены т.к есть много пустых
+            Map<Integer,List<Product>> pagingCena(int userId);
+            //Общая цена тоже с пустыми
+            Map<Integer,List<Product>> pagingFullprice(int userId);
+            */
+
+
+
+/*
+ //СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ
+        else if("sortTypeSetevoe".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+
+        else if("sortTypeSetevoeCena".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+        else if("sortTypeSetevoeProizvod".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+
+        //ЛОТКИ //ЛОТКИ //ЛОТКИ //ЛОТКИ //ЛОТКИ //ЛОТКИ //ЛОТКИ //ЛОТКИ //ЛОТКИ //ЛОТКИ //ЛОТКИ //ЛОТКИ
+        else if("sortTypeLotki".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+        else if("sortTypeLotkiCena".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+        else if("sortTypeLotkiProizvod".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+
+        //ЭЛЕКТРОЩИТЫ//ЭЛЕКТРОЩИТЫ//ЭЛЕКТРОЩИТЫ//ЭЛЕКТРОЩИТЫ//ЭЛЕКТРОЩИТЫ//ЭЛЕКТРОЩИТЫ//ЭЛЕКТРОЩИТЫ
+        else if("sortTypeElektroshit".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+        else if("sortTypeElektroshitCena".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+        else if("sortTypeElektroshitProizvod".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+
+
+        //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ
+        else if("sortTypeSvetovoe".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+
+        else if("sortTypeSvetovoeCena".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+        else if("sortTypeSvetovoeProizvod".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+
+        //Сантех//Сантех//Сантех//Сантех//Сантех//Сантех//Сантех//Сантех//Сантех//Сантех//Сантех//Сантех
+        else if("sortTypeSantex".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+
+        else if("sortTypeSantexCena".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+        else if("sortTypeSantexProizvod".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+
+        //Коммуникационные шкафы//Коммуникационные шкафы//Коммуникационные шкафы//Коммуникационные шкафы//Коммуникационные шкафы
+        else if("sortTypeComm".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+
+        else if("sortTypeCommCena".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+        else if("sortTypeCommProizvod".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+
+        //Компьютерное оборудование//Компьютерное оборудование//Компьютерное оборудование//Компьютерное оборудование
+        //Или ВСЁ В ОДИН ОР. ОДИН ОР СПОСОБ УБРАТЬ КУЧУ ТЕКСТА
+        else if("sortTypeKompOborud".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+
+        else if("sortTypeKompOborudCena".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+        else if("sortTypeKompOborudProizvod".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+
+        //Телекомуникационные//Телекомуникационные//Телекомуникационные//Телекомуникационные//Телекомуникационные
+        //Или ВСЁ В ОДИН ОР. ОДИН ОР СПОСОБ УБРАТЬ КУЧУ ТЕКСТА
+        else if("sortTypeTeleComm".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+
+        else if("sortTypeTeleCommCena".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+        else if("sortTypeTeleCommProizvod".equals(action))
+        {
+            int pageN = Integer.parseInt(request.getParameter("pageN"));
+            request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+
+
+ */

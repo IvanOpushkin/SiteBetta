@@ -88,14 +88,6 @@ public class JpaProductRepositoryImpl implements ProductRepository {
     public Map<Integer, List<Product>> sortedPagedList(String action, int userId) {
         return null;
     }
-    @Override
-    public List<Product> sortType(int userId) {
-        return null;
-    }
-
-    @Override
-    public List<Product> sortType2(int userId) {return null;
-    }
 
     @Override
     public List<Product> sortTypePriceAll(int userId) {

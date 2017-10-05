@@ -24,10 +24,6 @@ public interface ProductRepository {
 
     //Методы понимания (под кэш в страничке)
 
-    List<Product> sortType(int userId);
-
-    List<Product> sortType2(int userId);
-
     List<Product> sortTypePriceAll(int userId);
 
     Map<Integer, List<Product>> paging(int userId);

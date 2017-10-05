@@ -83,18 +83,6 @@ public class ProductRestController {
         );
     }
 
-    public List<Product> sortType() {
-        int userId = AuthorizedUser.id();
-        log.info("getSortedType1 for userId={}", userId);
-        return service.sortType(userId);
-    }
-
-    public List<Product> sortType2() {
-        int userId = AuthorizedUser.id();
-        log.info("getSortedType2 for userId={}", userId);
-        return service.sortType2(userId);
-    }
-
     public List<Product> sortTypePriceAll() {
         int userId = AuthorizedUser.id();
         log.info("getSortedPrice for userId={}", userId);

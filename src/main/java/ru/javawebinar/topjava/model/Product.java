@@ -56,6 +56,18 @@ public class Product extends BaseEntity {
     @Column (name = "fullprice")
     private Integer fullprice;
 
+
+    //Общие стоимости (Всем продуктам присвоить)
+    private Integer fullPriceOfType;
+
+    public Integer getFullPriceOfType() {
+        return fullPriceOfType;
+    }
+
+    public void setFullPriceOfType(Integer fullPriceOfType) {
+        this.fullPriceOfType = fullPriceOfType;
+    }
+
     public String getArticul() {
         return articul;
     }

@@ -56,16 +56,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> sortType(int userId) {
-        return repository.sortType(userId);
-    }
-
-    @Override
-    public List<Product> sortType2(int userId) {
-        return repository.sortType2(userId);
-    }
-
-    @Override
     public List<Product> sortTypePriceAll(int userId) {
         return repository.sortTypePriceAll(userId);
     }
