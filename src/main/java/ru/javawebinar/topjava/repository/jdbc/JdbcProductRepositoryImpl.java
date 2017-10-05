@@ -135,6 +135,11 @@ public class JdbcProductRepositoryImpl implements ProductRepository {
 
         //отсортировано правильным компаратором
 
+        for (int i = 0; i<x.size(); i++)
+        {
+            x.get(i).setPicture(x.get(i).getPicture().replace("основа","osnova"));
+        }
+
         x = x.stream().sorted((o1, o2)->o1.getCod().
                 compareTo(o2.getCod()))
                 .collect(Collectors.toList());
