@@ -103,6 +103,7 @@ public class ProductServlet extends HttpServlet {
 
 
         //СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ
+        //ВСЁ//ВСЁ//ВСЁ//ВСЁ//ВСЁ//ВСЁ//ВСЁ//ВСЁ//ВСЁ//ВСЁ//ВСЁ//ВСЁ//ВСЁ//ВСЁ//ВСЁ//ВСЁ//ВСЁ//ВСЁ//ВСЁ
         else if("sortTypeSetevoe".equals(action) || "sortTypeSetevoeCena".equals(action) || "sortTypeSetevoeProizvod".equals(action)
                 || "sortTypeLotki".equals(action) || "sortTypeLotkiCena".equals(action) || "sortTypeLotkiProizvod".equals(action)
         || "sortTypeElektroshit".equals(action) || "sortTypeElektroshitCena".equals(action) || "sortTypeElektroshitProizvod".equals(action)

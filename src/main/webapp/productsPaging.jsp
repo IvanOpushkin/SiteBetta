@@ -298,25 +298,25 @@
                         <h3>Продажи</h3>
                         <div class="content">
                             <div class="bs_box">
-                                <a href=""><img src="PhotoCablesMendeleev/5основа.jpg" width="50" height="70" alt="image" /></a>
+                                <a href=""><img src="PhotoCablesMendeleev/5osnova.jpg" width="50" height="70" alt="image" /></a>
                                 <h4><a href="">7ой продукт</a></h4>
                                 <p class="price">200руб/м</p>
                                 <div class="cleaner"></div>
                             </div>
                             <div class="bs_box">
-                                <a href=""><img src="PhotoCablesMendeleev/8основа.jpg" width="50" height="70" alt="image" /></a>
+                                <a href=""><img src="PhotoCablesMendeleev/8osnova.jpg" width="50" height="70" alt="image" /></a>
                                 <h4><a href="">Оборудование1</a></h4>
                                 <p class="price">400руб/м</p>
                                 <div class="cleaner"></div>
                             </div>
                             <div class="bs_box">
-                                <a href=""><img src="PhotoCablesMendeleev/4основа.jpg" width="50" height="70" alt="image" /></a>
+                                <a href=""><img src="PhotoCablesMendeleev/4osnova.jpg" width="50" height="70" alt="image" /></a>
                                 <h4><a href="">Оборудование2</a></h4>
                                 <p class="price">200руб/м</p>
                                 <div class="cleaner"></div>
                             </div>
                             <div class="bs_box">
-                                <a href=""><img src="PhotoCablesMendeleev/9основа.jpg" width="50" height="70" alt="image" /></a>
+                                <a href=""><img src="PhotoCablesMendeleev/9osnova.jpg" width="50" height="70" alt="image" /></a>
                                 <h4><a href="">Катушки</a></h4>
                                 <p class="price">300руб/м</p>
                                 <div class="cleaner"></div>
@@ -437,6 +437,8 @@
                 <div class="inner" align="left">
 
 
+
+                   <!-- Правильный цикл как -->
                     <table>
                         <tr>
                             <c:forEach begin="1" end="${maxPages}" step="1" varStatus="i">
