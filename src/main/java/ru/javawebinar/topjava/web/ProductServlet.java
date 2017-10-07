@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static ru.javawebinar.topjava.repository.jdbc.JdbcProductRepositoryImpl.getPageCurr;
 import static ru.javawebinar.topjava.repository.jdbc.JdbcProductRepositoryImpl.getSearchString2;
 import static ru.javawebinar.topjava.repository.jdbc.JdbcProductRepositoryImpl.getpPagesN;
 import static ru.javawebinar.topjava.util.DateTimeUtil.parseLocalDate;
@@ -92,12 +91,16 @@ public class ProductServlet extends HttpServlet {
             request.getRequestDispatcher("/products.jsp").forward(request, response);
         } else if ("paging".equals(action))
         {
+
             // int pageN=1;
 
             // if (request.getParameter("pageN") != null)
             int pageN = Integer.parseInt(request.getParameter("pageN"));
+            //JdbcProductRepositoryImpl.setPageCurr(pageN);
             request.setAttribute("productsPaging", productController.paging().get(pageN));
             request.setAttribute("maxPages", getpPagesN());
+            //request.setAttribute("pageCurr", JdbcProductRepositoryImpl.getPageCurr());
+
             request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
         }
 
@@ -114,10 +117,19 @@ public class ProductServlet extends HttpServlet {
                 || "sortTypeTeleComm".equals(action) || "sortTypeTeleCommCena".equals(action) || "sortTypeTeleCommProizvod".equals(action))
         {
             int pageN = Integer.parseInt(request.getParameter("pageN"));
+
+            //JdbcProductRepositoryImpl.setPageCurr(pageN);
+
             request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
             request.setAttribute("maxPages", getpPagesN());
+           // request.setAttribute("pageCurr", getPageCurr());
             request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+
         }
+
+
+        //Вторая часть по базе данных
+
         else if ("pagingType".equals(action))
         {
             int pageN = Integer.parseInt(request.getParameter("pageN"));
@@ -182,6 +194,37 @@ public class ProductServlet extends HttpServlet {
             request.setAttribute("maxPages", getpPagesN());
             request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
         }
+        else if ("searchCena".equals(action))
+        {
+            int pageN=1;
+
+            if (request.getParameter("pageN") != null && !request.getParameter("pageN").equals(""))
+                pageN = Integer.parseInt(request.getParameter("pageN"));
+
+
+            String searchString = request.getParameter("searchString");
+
+            if (searchString != null) request.setAttribute("productsPaging", productController.search(searchString).get(pageN));
+            else request.setAttribute("productsPaging", productController.search(getSearchString2()).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+        else if ("searchProizvod".equals(action))
+        {
+            int pageN=1;
+
+            if (request.getParameter("pageN") != null && !request.getParameter("pageN").equals(""))
+                pageN = Integer.parseInt(request.getParameter("pageN"));
+
+
+            String searchString = request.getParameter("searchString");
+
+            if (searchString != null) request.setAttribute("productsPaging", productController.search(searchString).get(pageN));
+            else request.setAttribute("productsPaging", productController.search(getSearchString2()).get(pageN));
+            request.setAttribute("maxPages", getpPagesN());
+            request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
+        }
+
 
 
 
@@ -200,222 +243,51 @@ public class ProductServlet extends HttpServlet {
 
             //СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ//СЕТЕВОЕ
             case "sortTypeSetevoe":
-                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
             case "sortTypeSetevoeCena":
-                request.setAttribute("productsPaging", productController.sortTypeSetevoeCena().get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
             case "sortTypeSetevoeProizvod":
-                request.setAttribute("productsPaging", productController.sortTypeSetevoeProizvod().get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
-
-            //ЛОТКИ//ЛОТКИ//ЛОТКИ//ЛОТКИ//ЛОТКИ//ЛОТКИ//ЛОТКИ//ЛОТКИ//ЛОТКИ//ЛОТКИ//ЛОТКИ//ЛОТКИ//ЛОТКИ//ЛОТКИ//ЛОТКИ//ЛОТКИ//ЛОТКИ
             case "sortTypeLotki":
-                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
             case "sortTypeLotkiCena":
-                request.setAttribute("productsPaging", productController.sortTypeLotkiCena().get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
             case "sortTypeLotkiProizvod":
-                request.setAttribute("productsPaging", productController.sortTypeLotkiProizvod().get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
-            //ЭЛЕКТРОЩИТЫ//ЭЛЕКТРОЩИТЫ//ЭЛЕКТРОЩИТЫ//ЭЛЕКТРОЩИТЫ//ЭЛЕКТРОЩИТЫ//ЭЛЕКТРОЩИТЫ//ЭЛЕКТРОЩИТЫ//ЭЛЕКТРОЩИТЫ
             case "sortTypeElektroshit":
-                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
             case "sortTypeElektroshitCena":
-                request.setAttribute("productsPaging", productController.sortTypeElektroshitCena().get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
             case "sortTypeElektroshitProizvod":
-                request.setAttribute("productsPaging", productController.sortTypeElektroshitProizvod().get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
-            //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ //СВЕТОВОЕ
             case "sortTypeSvetovoe":
-                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
             case "sortTypeSvetovoeCena":
-                request.setAttribute("productsPaging", productController.sortTypeSvetovoeCena().get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
             case "sortTypeSvetovoeProizvod":
-                request.setAttribute("productsPaging", productController.sortTypeSvetovoeProizvod().get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
-            //Сантех//Сантех//Сантех//Сантех//Сантех//Сантех//Сантех//Сантех//Сантех//Сантех//Сантех//Сантех
             case "sortTypeSantex":
-                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
             case "sortTypeSantexCena":
-                request.setAttribute("productsPaging", productController.sortTypeSantexCena().get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
             case "sortTypeSantexProizvod":
-                request.setAttribute("productsPaging", productController.sortTypeSantexProizvod().get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
-            //Коммуникационные шкафы//Коммуникационные шкафы//Коммуникационные шкафы//Коммуникационные шкафы//Коммуникационные шкафы
             case "sortTypeComm":
-                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
             case "sortTypeCommCena":
-                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
             case "sortTypeCommProizvod":
-                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
-            //Компьютерное оборудование//Компьютерное оборудование//Компьютерное оборудование//Компьютерное оборудование
-            //Множественный кэйс через пропуск двоеточия, как с if группировкой
             case "sortTypeKompOborud":
-                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
             case "sortTypeKompOborudCena":
-                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
             case "sortTypeKompOborudProizvod":
-                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
-            //Телекомуникационные//Телекомуникационные//Телекомуникационные//Телекомуникационные//Телекомуникационные
-           //Множественный кэйс через пропуск двоеточия, как с if группировкой
             case "sortTypeTeleComm":
-                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
             case "sortTypeTeleCommCena":
-                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
-                //по идее после первой строчки хэшируется всё по производ типам
-                request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
-                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
-                break;
-
             case "sortTypeTeleCommProizvod":
+//                int pageN = Integer.parseInt(request.getParameter("pageN"));
                 request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
                 //по идее после первой строчки хэшируется всё по производ типам
+
+               // JdbcProductRepositoryImpl.setPageCurr(pageN);
+
                 request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
+                //request.setAttribute("currPage", JdbcProductRepositoryImpl.getPageCurr());
+                //System.out.println(getpPagesN());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
-
-
-
-
-
-
             //По сортировкам конец части 1. Для сайта
-
-
+            //Кнопки только для таблицы.
             //Сайто страница тестовое
+
+
             case "mirrorPaging":
                 // Object numberPage = request.getAttribute("number");
                 // int numberP = (int) numberPage;
                 request.setAttribute("productsPaging", productController.paging().get(2));
                 request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
+               // request.setAttribute("pageCurr", getPageCurr());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
 
@@ -427,7 +299,7 @@ public class ProductServlet extends HttpServlet {
                 // int numberP = (int) numberPage;
                 request.setAttribute("productsPaging", productController.paging().get(1));
                 request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
+              //  request.setAttribute("currPage", getPageCurr());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
 
@@ -437,7 +309,7 @@ public class ProductServlet extends HttpServlet {
                 // int numberP = (int) numberPage;
                 request.setAttribute("productsPaging", productController.pagingType().get(1));
                 request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
+              //  request.setAttribute("pageCurr", getPageCurr());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
             case "pagingAlpha":
@@ -445,7 +317,7 @@ public class ProductServlet extends HttpServlet {
                 // int numberP = (int) numberPage;
                 request.setAttribute("productsPaging", productController.pagingAlpha().get(1));
                 request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
+              //  request.setAttribute("pageCurr", getPageCurr());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
             case "pagingProizvod":
@@ -453,7 +325,7 @@ public class ProductServlet extends HttpServlet {
                 // int numberP = (int) numberPage;
                 request.setAttribute("productsPaging", productController.pagingProizvod().get(1));
                 request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
+               // request.setAttribute("pageCurr", getPageCurr());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
             case "pagingEdIzm":
@@ -461,7 +333,7 @@ public class ProductServlet extends HttpServlet {
                 // int numberP = (int) numberPage;
                 request.setAttribute("productsPaging", productController.pagingEdIzm().get(1));
                 request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
+                //request.setAttribute("pageCurr", getPageCurr());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
             case "pagingKolvo":
@@ -469,7 +341,7 @@ public class ProductServlet extends HttpServlet {
                 // int numberP = (int) numberPage;
                 request.setAttribute("productsPaging", productController.pagingKolvo().get(1));
                 request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
+               // request.setAttribute("pageCurr", getPageCurr());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
             case "pagingCena":
@@ -477,7 +349,7 @@ public class ProductServlet extends HttpServlet {
                 // int numberP = (int) numberPage;
                 request.setAttribute("productsPaging", productController.pagingCena().get(1));
                 request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
+               // request.setAttribute("pageCurr", getPageCurr());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
             case "pagingFullprice":
@@ -485,7 +357,7 @@ public class ProductServlet extends HttpServlet {
                 // int numberP = (int) numberPage;
                 request.setAttribute("productsPaging", productController.pagingFullprice().get(1));
                 request.setAttribute("maxPages", getpPagesN());
-                request.setAttribute("pageCurr", getPageCurr());
+               // request.setAttribute("pageCurr", getPageCurr());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
 
@@ -505,8 +377,15 @@ public class ProductServlet extends HttpServlet {
                 break;
             case "all":
             default:
-                request.setAttribute("products", productController.getAll());
-                request.getRequestDispatcher("/products.jsp").forward(request, response);
+                request.setAttribute("productsPaging", productController.sortedPagedList(action).get(1));
+                //по идее после первой строчки хэшируется всё по производ типам
+
+                // JdbcProductRepositoryImpl.setPageCurr(pageN);
+
+                request.setAttribute("maxPages", getpPagesN());
+                //request.setAttribute("currPage", JdbcProductRepositoryImpl.getPageCurr());
+                //System.out.println(getpPagesN());
+                request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
         }
     }

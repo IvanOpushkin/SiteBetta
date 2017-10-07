@@ -1,10 +1,9 @@
-<%@ page import="static ru.javawebinar.topjava.repository.jdbc.JdbcProductRepositoryImpl.setpPagesN" %>
-<%@ page import="static ru.javawebinar.topjava.repository.jdbc.JdbcProductRepositoryImpl.getPageCurr" %>
-<%@ page import="static ru.javawebinar.topjava.repository.jdbc.JdbcProductRepositoryImpl.setPageCurr" %>
+<%@ page import="ru.javawebinar.topjava.repository.jdbc.JdbcProductRepositoryImpl" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://topjava.javawebinar.ru/functions" %>
+<%--<%@ taglib prefix="fn" uri="http://topjava.javawebinar.ru/functions" %> --%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
 <html>
@@ -19,7 +18,7 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/ddsmoothmenu.js"></script>
 
-    <title>Склад</title>
+    <title>Оборудование</title>
     <link rel="stylesheet" href="css/style.css">
 
     <script type="text/javascript">
@@ -202,6 +201,7 @@
 
 <section>
 
+   <%-- ${param.action} --%>
 <div id="outer3" style="width:100%;" align="center">
 
     <div id="templatemo_body_wrapper">
@@ -272,7 +272,6 @@
 
                         </form>
 
-
                 </div>
             </div>
 
@@ -287,38 +286,43 @@
                                 <li><a href="products?action=sortTypeLotki">Защитные лотки</a></li>
                                 <li><a href="products?action=sortTypeSvetovoe">Световое оборудование</a></li>
                                 <li><a href="products?action=sortTypeSantex">Сантехническое оборудование</a></li>
+                                <li><a href="products?action=sortTypeComm">Коммуникационное</a></li>
+                                <li><a href="products?action=sortTypeKompOborud">Компьютерное оборудование</a></li>
+                                <li><a href="products?action=sortTypeTeleComm">Телекомуникационные</a></li>
                                 <li class="last"><a href="products?action=sortTypeElektroshit">Электрощитовое оборудование</a></li>
 
                             </ul>
                         </div>
                     </div>
 
-                    <!-- список по продажам будущее (каждой картинке спец изображение обрез) -->
+                    <!-- список по продажам будущее (каждой картинке спец изображение обрез)
+                    Сделать рандомные значения
+                    -->
                     <div class="sidebar_box"><span class="bottom"></span>
                         <h3>Продажи</h3>
                         <div class="content">
                             <div class="bs_box">
-                                <a href=""><img src="PhotoCablesMendeleev/5osnova.jpg" width="50" height="70" alt="image" /></a>
-                                <h4><a href="">7ой продукт</a></h4>
-                                <p class="price">200руб/м</p>
+                                <a href="products?action=sortTypeLotki"><img src="PhotoCablesMendeleev/200osnova.jpg" width="50" height="70" alt="image" /></a>
+                                <h4><a href="products?action=sortTypeLotki">Защитные лотки</a></h4>
+                                <p class="price">162руб/шт</p>
                                 <div class="cleaner"></div>
                             </div>
                             <div class="bs_box">
-                                <a href=""><img src="PhotoCablesMendeleev/8osnova.jpg" width="50" height="70" alt="image" /></a>
-                                <h4><a href="">Оборудование1</a></h4>
-                                <p class="price">400руб/м</p>
+                                <a href="products?action=sortTypeSetevoe"><img src="PhotoCablesMendeleev/4osnova.jpg" width="50" height="70" alt="image" /></a>
+                                <h4><a href="products?action=sortTypeSetevoe">Сетевое оборудовани</a></h4>
+                                <p class="price">80руб/м</p>
                                 <div class="cleaner"></div>
                             </div>
                             <div class="bs_box">
-                                <a href=""><img src="PhotoCablesMendeleev/4osnova.jpg" width="50" height="70" alt="image" /></a>
-                                <h4><a href="">Оборудование2</a></h4>
-                                <p class="price">200руб/м</p>
+                                <a href="products?action=sortTypeSantex"><img src="PhotoCablesMendeleev/47590osnova.jpg" width="50" height="70" alt="image" /></a>
+                                <h4><a href="products?action=sortTypeSantex">Сантехническое оборудование</a></h4>
+                                <p class="price">15руб/шт</p>
                                 <div class="cleaner"></div>
                             </div>
                             <div class="bs_box">
-                                <a href=""><img src="PhotoCablesMendeleev/9osnova.jpg" width="50" height="70" alt="image" /></a>
-                                <h4><a href="">Катушки</a></h4>
-                                <p class="price">300руб/м</p>
+                                <a href="products?action=sortTypeSvetovoe"><img src="PhotoCablesMendeleev/16870osnova.jpg" width="50" height="70" alt="image" /></a>
+                                <h4><a href="products?action=sortTypeSvetovoe">Световое оборудование</a></h4>
+                                <p class="price">500руб/м</p>
                                 <div class="cleaner"></div>
                             </div>
                         </div>
@@ -327,10 +331,39 @@
 
 
 
-                <div id="outer2" style="width:100%; text-align:right" align="right">
+
+                <!--Копирка парама, не трогать наш уникальный экшен нужный в коде. Обрезание каждый раз перед нажатием кнопки-->
+                <c:set var = "itog" value = "${param.action}" />
+
+                <c:set var = "proverkaCenaLi" value = "${fn:substring(itog,  itog.length()-4, itog.length())}" />
+                <c:set var = "proverkaProizvodLi" value = "${fn:substring(itog,  itog.length()-8,itog.length())}" />
+
+                <!--Решение Отезание нужного элемента-->
+                <c:if test="${proverkaCenaLi eq 'Cena'}">
+                    <c:set var = "itog" value = "${fn:substring(itog,  0, itog.length()-4)}" />
+
+                </c:if>
+                <c:if test="${proverkaProizvodLi eq 'Proizvod'}">
+                    <c:set var = "itog" value = "${fn:substring(itog,  0, itog.length()-8)}"/>
+
+                </c:if>
+
+                <c:if test="${param.action !='search'}">
+                <!--Есть ли норм связь между if и otherwise JSTL НЕТ СВЯЗИ. Это от кэйсового вроде другого тега-->
+                <c:if test="${param.action eq 'paging'}">
+                    <div id="outer2" style="width:100%; text-align:right" align="right">
                    Сортировать по: <div class="inner"><a style="color:black" href="products?action=pagingProizvod" class = "button">производителю</a></div>
                     <div class="inner"><a style="color:black" href="products?action=pagingCena" class = "button">цене</a></div>
                 </div>
+                </c:if>
+
+                <c:if test="${param.action != 'paging'}">
+                    <div id="outer2" style="width:100%; text-align:right" align="right">
+                        Сортировать по: <div class="inner"><a style="color:black" href="products?action=${itog}Proizvod" class = "button">производителю</a></div>
+                        <div class="inner"><a style="color:black" href="products?action=${itog}Cena" class = "button">цене</a></div>
+                    </div>
+                </c:if>
+                </c:if>
 
 <!--
                 <div class="ddsmoothmenu">
@@ -384,7 +417,6 @@
                             <jsp:useBean id="Product" scope="page" type="ru.javawebinar.topjava.model.Product"/>
                             <tr>
 
-
                                 <c:if test ="${empty Product.picture}">
                                     <td><img src="Sklad-Photos/NO-IMAGE.png" width = "120" height="120"><a href="Sklad-Photos/NO-IMAGE.png"></a></td>
                                 </c:if>
@@ -406,12 +438,12 @@
                                 <td>${Product.proizvoditel}</td>
                                     <%--     <td>${meal.edizmereniya}</td> --%>
                                     <%--     <td>${meal.kolvo}</td> --%>
-
+                                <c:if test="${Product.cena != 0}">
                                 <c:if test="${Product.edizmereniya eq 'Метры'}"><td>${Product.cena} руб/метр</td></c:if>
                                 <c:if test="${Product.edizmereniya eq 'метры'}"><td>${Product.cena} руб/метр</td></c:if>
                                 <c:if test="${Product.edizmereniya eq 'шт'}"><td>${Product.cena} руб/шт</td></c:if>
                                 <c:if test="${Product.edizmereniya eq ''}"><td>${Product.cena} руб.</td></c:if>
-
+                                </c:if>
 
                             </tr>
 
@@ -437,10 +469,12 @@
                 <div class="inner" align="left">
 
 
-
+               <c:if test="${maxPages < 12}">
                    <!-- Правильный цикл как -->
                     <table>
                         <tr>
+                            <!--Нужен пэйджовый динамический идентификатор в Репозитории +1, от каждого клика в стороны След. Предыд и Игра от него-->
+                          <!--Три цикла, обычный, на начало и на конец -->
                             <c:forEach begin="1" end="${maxPages}" step="1" varStatus="i">
                                 <form method="post" action="products?action=${param.action}">
                                     <!-- инпут тайп хайден убирает ввод -->
@@ -448,9 +482,26 @@
                                     <button type="submit" class ="button2">${i.index}</button>
                                 </form>
                             </c:forEach>
-
                         </tr>
                     </table>
+               </c:if>
+
+                    <c:if test="${maxPages > 12}">
+                        <!-- Правильный цикл как -->
+                        <table>
+                            <tr>
+                                <!--Нужен пэйджовый динамический идентификатор в Репозитории +1, от каждого клика в стороны След. Предыд и Игра от него-->
+                                <!--Три цикла, обычный, на начало и на конец -->
+                                <c:forEach begin="1" end="${12}" step="1" varStatus="i">
+                                    <form method="post" action="products?action=${param.action}">
+                                        <!-- инпут тайп хайден убирает ввод -->
+                                        <input type='hidden' name="pageN" value="${i.index}">
+                                        <button type="submit" class ="button2">${i.index}</button>
+                                    </form>
+                                </c:forEach>
+                            </tr>
+                        </table>
+                    </c:if>
 
 
                 </div>
@@ -462,7 +513,7 @@
 
                 <!-- Credit: www.templatemo.com --></div> <!-- END of templatemo_footer -->
         </div> <!-- END of templatemo_wrapper -->
-        <p align="center" style="color:blue">Copyright © 2072 <a href="">Компания N</a></p>
+        <p align="center" style="color:blue">Copyright © 2017 <a href="">Ланит</a></p>
 
     </div>
 

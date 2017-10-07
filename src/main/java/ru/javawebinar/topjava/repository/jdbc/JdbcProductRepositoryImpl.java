@@ -28,9 +28,10 @@ public class JdbcProductRepositoryImpl implements ProductRepository {
 
     private static final int pNumber = 10;
 
+    //all pages
     private static int pPagesN = 0;
 
-    private static int pageCurr = 1;
+    private Integer pageCurr = 1;
 
     private static String searchString2="";
 
@@ -235,7 +236,7 @@ public class JdbcProductRepositoryImpl implements ProductRepository {
         else if("sortTypeElektroshitCena".equals(action))
         {
             String type1 = "Электрощитовое";
-            x = x.stream().filter(Meal -> Meal.getType1().equals(type1))
+            x = x.stream().filter(Meal -> Meal.getType1().contains(type1))
                     .sorted((o1, o2)->o2.getCena().
                             compareTo(o1.getCena()))
                     .collect(Collectors.toList());
@@ -329,7 +330,7 @@ public class JdbcProductRepositoryImpl implements ProductRepository {
 
        }
 
-       else if("sortTypeComm".equals(action))
+       else if("sortTypeCommCena".equals(action))
        {
            String type1 = "Коммуникационные шкафы";
            x = x.stream().filter(Meal -> Meal.getType1().equals(type1))
@@ -339,7 +340,7 @@ public class JdbcProductRepositoryImpl implements ProductRepository {
            return pagingFORM(x);
 
        }
-       else if("sortTypeComm".equals(action))
+       else if("sortTypeCommProizvod".equals(action))
        {
            String type1 = "Коммуникационные шкафы";
            x = x.stream().filter(Meal -> Meal.getType1().contains(type1) && !Meal.getProizvoditel().equals(""))
@@ -704,12 +705,12 @@ public class JdbcProductRepositoryImpl implements ProductRepository {
         JdbcProductRepositoryImpl.pPagesN = pPagesN;
     }
 
-    public static int getPageCurr() {
+    public Integer getPageCurr() {
         return pageCurr;
     }
 
-    public static void setPageCurr(int pageCurr) {
-        JdbcProductRepositoryImpl.pageCurr = pageCurr;
+    public void setPageCurr(Integer pageCurr) {
+        this.pageCurr = pageCurr;
     }
 
     public static String getSearchString2() {
