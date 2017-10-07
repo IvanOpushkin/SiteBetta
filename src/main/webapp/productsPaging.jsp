@@ -18,7 +18,7 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/ddsmoothmenu.js"></script>
 
-    <title>Оборудование</title>
+    <title>Оборудование Хабаровск</title>
     <link rel="stylesheet" href="css/style.css">
 
     <script type="text/javascript">
