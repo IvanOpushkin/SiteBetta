@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static ru.javawebinar.topjava.repository.jdbc.JdbcProductRepositoryImpl.getPageCurr;
 import static ru.javawebinar.topjava.repository.jdbc.JdbcProductRepositoryImpl.getSearchString2;
 import static ru.javawebinar.topjava.repository.jdbc.JdbcProductRepositoryImpl.getpPagesN;
 import static ru.javawebinar.topjava.util.DateTimeUtil.parseLocalDate;
@@ -122,7 +123,9 @@ public class ProductServlet extends HttpServlet {
 
             request.setAttribute("productsPaging", productController.sortedPagedList(action).get(pageN));
             request.setAttribute("maxPages", getpPagesN());
-           // request.setAttribute("pageCurr", getPageCurr());
+            //Странно заработало с цветом для нажатий
+            //--Инпут Тайп связан с нажатием каждой отдельной кнопкой шлёт инфу --
+            request.setAttribute("pageCurr", pageN);
             request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
 
         }
@@ -273,7 +276,7 @@ public class ProductServlet extends HttpServlet {
                // JdbcProductRepositoryImpl.setPageCurr(pageN);
 
                 request.setAttribute("maxPages", getpPagesN());
-                //request.setAttribute("currPage", JdbcProductRepositoryImpl.getPageCurr());
+                request.setAttribute("currPage", getPageCurr());
                 //System.out.println(getpPagesN());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
@@ -287,7 +290,7 @@ public class ProductServlet extends HttpServlet {
                 // int numberP = (int) numberPage;
                 request.setAttribute("productsPaging", productController.paging().get(2));
                 request.setAttribute("maxPages", getpPagesN());
-               // request.setAttribute("pageCurr", getPageCurr());
+               request.setAttribute("pageCurr", getPageCurr());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
 
@@ -299,7 +302,7 @@ public class ProductServlet extends HttpServlet {
                 // int numberP = (int) numberPage;
                 request.setAttribute("productsPaging", productController.paging().get(1));
                 request.setAttribute("maxPages", getpPagesN());
-              //  request.setAttribute("currPage", getPageCurr());
+                request.setAttribute("currPage", getPageCurr());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
 
@@ -309,7 +312,7 @@ public class ProductServlet extends HttpServlet {
                 // int numberP = (int) numberPage;
                 request.setAttribute("productsPaging", productController.pagingType().get(1));
                 request.setAttribute("maxPages", getpPagesN());
-              //  request.setAttribute("pageCurr", getPageCurr());
+                request.setAttribute("pageCurr", getPageCurr());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
             case "pagingAlpha":
@@ -317,7 +320,7 @@ public class ProductServlet extends HttpServlet {
                 // int numberP = (int) numberPage;
                 request.setAttribute("productsPaging", productController.pagingAlpha().get(1));
                 request.setAttribute("maxPages", getpPagesN());
-              //  request.setAttribute("pageCurr", getPageCurr());
+                request.setAttribute("pageCurr", getPageCurr());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
             case "pagingProizvod":
@@ -325,7 +328,7 @@ public class ProductServlet extends HttpServlet {
                 // int numberP = (int) numberPage;
                 request.setAttribute("productsPaging", productController.pagingProizvod().get(1));
                 request.setAttribute("maxPages", getpPagesN());
-               // request.setAttribute("pageCurr", getPageCurr());
+                request.setAttribute("pageCurr", getPageCurr());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
             case "pagingEdIzm":
@@ -333,7 +336,7 @@ public class ProductServlet extends HttpServlet {
                 // int numberP = (int) numberPage;
                 request.setAttribute("productsPaging", productController.pagingEdIzm().get(1));
                 request.setAttribute("maxPages", getpPagesN());
-                //request.setAttribute("pageCurr", getPageCurr());
+                request.setAttribute("pageCurr", getPageCurr());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
             case "pagingKolvo":
@@ -341,7 +344,7 @@ public class ProductServlet extends HttpServlet {
                 // int numberP = (int) numberPage;
                 request.setAttribute("productsPaging", productController.pagingKolvo().get(1));
                 request.setAttribute("maxPages", getpPagesN());
-               // request.setAttribute("pageCurr", getPageCurr());
+                request.setAttribute("pageCurr", getPageCurr());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
             case "pagingCena":
@@ -349,7 +352,7 @@ public class ProductServlet extends HttpServlet {
                 // int numberP = (int) numberPage;
                 request.setAttribute("productsPaging", productController.pagingCena().get(1));
                 request.setAttribute("maxPages", getpPagesN());
-               // request.setAttribute("pageCurr", getPageCurr());
+                request.setAttribute("pageCurr", getPageCurr());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
             case "pagingFullprice":
@@ -357,7 +360,7 @@ public class ProductServlet extends HttpServlet {
                 // int numberP = (int) numberPage;
                 request.setAttribute("productsPaging", productController.pagingFullprice().get(1));
                 request.setAttribute("maxPages", getpPagesN());
-               // request.setAttribute("pageCurr", getPageCurr());
+                request.setAttribute("pageCurr", getPageCurr());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;
 
@@ -383,7 +386,7 @@ public class ProductServlet extends HttpServlet {
                 // JdbcProductRepositoryImpl.setPageCurr(pageN);
 
                 request.setAttribute("maxPages", getpPagesN());
-                //request.setAttribute("currPage", JdbcProductRepositoryImpl.getPageCurr());
+                request.setAttribute("currPage", getPageCurr());
                 //System.out.println(getpPagesN());
                 request.getRequestDispatcher("/productsPaging.jsp").forward(request, response);
                 break;

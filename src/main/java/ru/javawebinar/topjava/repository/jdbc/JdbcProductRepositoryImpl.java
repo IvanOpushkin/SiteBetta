@@ -31,7 +31,7 @@ public class JdbcProductRepositoryImpl implements ProductRepository {
     //all pages
     private static int pPagesN = 0;
 
-    private Integer pageCurr = 1;
+    private static Integer pageCurr = 1;
 
     private static String searchString2="";
 
@@ -705,7 +705,7 @@ public class JdbcProductRepositoryImpl implements ProductRepository {
         JdbcProductRepositoryImpl.pPagesN = pPagesN;
     }
 
-    public Integer getPageCurr() {
+    public static Integer getPageCurr() {
         return pageCurr;
     }
 

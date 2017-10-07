@@ -119,6 +119,17 @@
             display: inline-block;
             font-size: 9pt;
         }
+        .button3 {
+            background-color: white;
+            border: 1px solid #F0FFF0;
+            color: red;
+            /* 15 32*/
+            padding: 10px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 9pt;
+        }
 
         .button2:visited {
             color: white;
@@ -478,8 +489,14 @@
                             <c:forEach begin="1" end="${maxPages}" step="1" varStatus="i">
                                 <form method="post" action="products?action=${param.action}">
                                     <!-- инпут тайп хайден убирает ввод -->
+                                    <!--Инпут Тайп связан с нажатием каждой отдельной кнопкой шлёт инфу -->
                                     <input type='hidden' name="pageN" value="${i.index}">
-                                    <button type="submit" class ="button2">${i.index}</button>
+                                    <c:if test="${i.index==pageCurr}">
+                                        <button type="submit" class ="button2" style="color:blue">${i.index}</button>
+                                    </c:if>
+                                    <c:if test="${i.index!=pageCurr}">
+                                        <button type="submit" class ="button2">${i.index}</button>
+                                    </c:if>
                                 </form>
                             </c:forEach>
                         </tr>
@@ -496,7 +513,12 @@
                                     <form method="post" action="products?action=${param.action}">
                                         <!-- инпут тайп хайден убирает ввод -->
                                         <input type='hidden' name="pageN" value="${i.index}">
-                                        <button type="submit" class ="button2">${i.index}</button>
+                                        <c:if test="${i.index==pageCurr}">
+                                            <button type="submit" class ="button2" style="color:blue">${i.index}</button>
+                                        </c:if>
+                                        <c:if test="${i.index!=pageCurr}">
+                                            <button type="submit" class ="button2">${i.index}</button>
+                                        </c:if>
                                     </form>
                                 </c:forEach>
                             </tr>
